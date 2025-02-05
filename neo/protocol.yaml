@@ -1,0 +1,30 @@
+ProtocolConfiguration:
+  Magic: 56753
+  TimePerBlock: 12s
+  StandbyCommittee:
+    - 02fcc80318ea9814845be0c44c0623f4833faba50ab0b7fa5e2441e674295133c9
+  ValidatorsCount: 1
+  VerifyTransactions: true
+  P2PSigExtensions: false
+  InitialGASSupply: 0.00000001
+
+ApplicationConfiguration:
+  SkipBlockVerification: false
+  DBConfiguration:
+    Type: "boltdb"
+    BoltDBOptions:
+      FilePath: "./chains/privnet"
+  Relay: true
+  Consensus:
+    Enabled: true
+    UnlockWallet:
+      Path: "consensus.json"
+      Password: "a"
+  RPC:
+    Enabled: true
+    Addresses:
+      - :20331
+    MaxGasInvoke: 15
+    EnableCORSWorkaround: false
+    SessionEnabled: true
+    SessionExpirationTime: 180 # higher expiration time for manual requests and tests.

@@ -1,0 +1,14 @@
+{
+	"name": "interactneo",
+	"module": "main.ts",
+	"type": "module",
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@cityofzion/neon-js": "^5.7.0"
+	}
+}

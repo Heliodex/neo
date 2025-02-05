@@ -1,0 +1,1 @@
+clear && neo-go node --config-file protocol.yaml --privnet
