@@ -39,11 +39,11 @@ func getTxs(c *rpcclient.Client, acc *wallet.Account) {
 func NewToken(c *rpcclient.Client, acc *wallet.Account) (act *actor.Actor, token *nep17.Token, err error) {
 	signer := transaction.Signer{
 		Account: acc.Contract.ScriptHash(),
-		Scopes:  transaction.CalledByEntry,
+		Scopes: transaction.CalledByEntry,
 	}
 
 	a, err := actor.New(c, []actor.SignerAccount{{
-		Signer:  signer,
+		Signer: signer,
 		Account: acc,
 	}})
 	if err != nil {
@@ -54,7 +54,7 @@ func NewToken(c *rpcclient.Client, acc *wallet.Account) (act *actor.Actor, token
 }
 
 type Balance struct {
-	Amount      string
+	Amount string
 	LastUpdated uint32
 }
 
