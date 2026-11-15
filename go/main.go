@@ -18,13 +18,14 @@ func logTransfer(t result.NEP17Transfer) {
 	if t.Asset != gas.Hash {
 		return
 	}
+
 	var addr string
+
 	if t.Address == "" {
 		addr = "<NIL> "
 	} else {
 		addr = t.Address[1:7]
 	}
-
 	fmt.Println(addr, t.Amount, t.Index, t.Timestamp, t.TxHash)
 }
 
@@ -49,7 +50,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	fmt.Println("1:", acc1.Address)
 	fmt.Println("2:", acc2.Address)
 
@@ -58,7 +58,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	fmt.Println("1 Amount:", bal1)
 	fmt.Println("1 Updated:", updated1)
 	fmt.Println()
@@ -67,7 +66,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	fmt.Println("2 Amount:", bal2)
 	fmt.Println("2 Updated:", updated2)
 	fmt.Println()
@@ -83,7 +81,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	fmt.Println("Total Supply:", s)
 
 	tx, err := Tx(g, acc1, acc2, 50)
@@ -92,13 +89,13 @@ func main() {
 	}
 
 	fee := tx.NetworkFee + tx.SystemFee
+
 	fmt.Println("Fee:", fee)
 
 	hash, err := c.SendRawTransaction(tx)
 	if err != nil {
 		panic(err)
 	}
-
 	fmt.Println("Hash:", hash)
 	fmt.Println("ValidUntil:", tx.ValidUntilBlock)
 
@@ -107,7 +104,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	fmt.Println("Mempool:", len(mempool))
 	for _, tx := range mempool {
 		fmt.Println(tx)
