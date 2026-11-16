@@ -49,6 +49,7 @@ func NewToken(c *rpcclient.Client, acc *wallet.Account) (act *actor.Actor, token
 		Account: acc.Contract.ScriptHash(),
 		Scopes: transaction.CalledByEntry,
 	}
+
 	a, err := actor.New(c, []actor.SignerAccount{
 		{
 			Signer: signer,
@@ -68,6 +69,7 @@ func Tx(g *nep17.Token, from, to *wallet.Account, amount uint64) (*transaction.T
 
 func getTxs(c *rpcclient.Client, acc *wallet.Account) {
 	start, stop := uint64(0), uint64(time.Now().UnixMilli())
+
 	xfers, err := c.GetNEP17Transfers(acc.Contract.ScriptHash(), &start, &stop, nil, nil)
 	if err != nil {
 		panic(err)
@@ -77,10 +79,13 @@ func getTxs(c *rpcclient.Client, acc *wallet.Account) {
 	sent := xfers.Sent
 
 	fmt.Println("Received:", len(received))
+
 	for _, t := range received {
 		logTransfer(t)
 	}
+
 	fmt.Println("Sent:", len(sent))
+
 	for _, t := range sent {
 		logTransfer(t)
 	}
